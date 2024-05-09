@@ -1,0 +1,202 @@
+Module 7 Snippets
+-----------------
+
+List<Category> allCategories = null;
+
+            if (!_memoryCache.TryGetValue(AllCategoriesCacheName, out allCategories))
+            {
+                allCategories = await _bethanysPieShopDbContext.Categories.AsNoTracking().OrderBy(c => c.CategoryId).ToListAsync();
+                var cacheEntryOptions = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(60));
+
+                _memoryCache.Set(AllCategoriesCacheName, allCategories, cacheEntryOptions);
+            }
+          
+            return allCategories;
+
+
+
+
+          public async Task<int> UpdateCategoryNamesAsync(List<Category> categories)
+        {
+            foreach (var category in categories)
+            {
+                var categoryToUpdate = await _bethanysPieShopDbContext.Categories.FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
+
+                if (categoryToUpdate != null)
+                {
+                    categoryToUpdate.Name = category.Name;
+
+                    _bethanysPieShopDbContext.Categories.Update(categoryToUpdate);
+                }
+            }
+
+            int result = await _bethanysPieShopDbContext.SaveChangesAsync();
+
+            _memoryCache.Remove(AllCategoriesCacheName);
+
+            return result;
+        }
+
+
+
+public class CategoryBulkEditViewModel
+    {
+        public int CategoryId { get; set; }
+        public string Name { get; set; } = string.Empty;
+    }
+
+
+
+public async Task<IActionResult> BulkEdit()
+        {
+            List<CategoryBulkEditViewModel> categoryBulkEditViewModels = new List<CategoryBulkEditViewModel>();
+
+            var allCategories = await _categoryRepository.GetAllCategoriesAsync();
+            foreach (var category in allCategories) 
+            {
+                categoryBulkEditViewModels.Add(new CategoryBulkEditViewModel
+                {
+                    CategoryId = category.CategoryId,
+                    Name = category.Name
+                });
+            }
+
+            return View(categoryBulkEditViewModels);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> BulkEdit(List<CategoryBulkEditViewModel> categoryBulkEditViewModels)
+        {
+            List<Category> categories = new List<Category>();   
+
+            foreach (var categoryBulkEditViewModel in categoryBulkEditViewModels)
+            {
+                categories.Add(new Category() { CategoryId = categoryBulkEditViewModel.CategoryId, Name = categoryBulkEditViewModel.Name });
+            }
+
+            await _categoryRepository.UpdateCategoryNamesAsync(categories);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+
+
+@model List<CategoryBulkEditViewModel>
+
+<h2>Bulk edit pies</h2>
+<hr />
+
+<form asp-action="BulkEdit" method="post">
+    @for (var i = 0; i < Model.Count; i++)
+    {
+        <div class="mb-3">
+            <label asp-for="@Model[i].CategoryId" class="form-label"></label>
+            <input asp-for="@Model[i].CategoryId" class="form-control" readonly="readonly" />
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="@Model[i].Name" class="form-label"></label>
+
+            <input asp-for="@Model[i].Name" class="form-control" />
+            <span asp-validation-for="@Model[i].Name" class="text-danger"></span>
+        </div>
+    }
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+
+[HttpPost]
+        
+        public async Task<IActionResult> Edit(Pie pie)
+        {
+            Pie pieToUpdate = await _pieRepository.GetPieByIdAsync(pie.PieId);
+
+            try
+            {
+                if (pieToUpdate == null)
+                {
+                    ModelState.AddModelError(string.Empty, "The pie you want to update doesn't exist or was already deleted by someone else.");
+                }
+
+                if (ModelState.IsValid)
+                {
+                    await _pieRepository.UpdatePieAsync(pie);
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                var exceptionPie = ex.Entries.Single();
+                var entityValues = (Pie)exceptionPie.Entity;
+                var databasePie = exceptionPie.GetDatabaseValues();
+
+                if (databasePie == null)
+                {
+                    ModelState.AddModelError(string.Empty, "The pie was already deleted by another user.");
+                }
+                else
+                {
+                    var databaseValues = (Pie)databasePie.ToObject();
+
+                    if (databaseValues.Name != entityValues.Name)
+                    {
+                        ModelState.AddModelError("Pie.Name", $"Current value: {databaseValues.Name}");
+                    }
+                    if (databaseValues.Price != entityValues.Price)
+                    {
+                        ModelState.AddModelError("Pie.Price", $"Current value: {databaseValues.Price:c}");
+                    }
+                    if (databaseValues.ShortDescription != entityValues.ShortDescription)
+                    {
+                        ModelState.AddModelError("Pie.ShortDescription", $"Current value: {databaseValues.ShortDescription}");
+                    }
+                    if (databaseValues.LongDescription != entityValues.LongDescription)
+                    {
+                        ModelState.AddModelError("Pie.LongDescription", $"Current value: {databaseValues.LongDescription}");
+                    }
+                    if (databaseValues.AllergyInformation != entityValues.AllergyInformation)
+                    {
+                        ModelState.AddModelError("Pie.AllergyInformation", $"Current value: {databaseValues.AllergyInformation}");
+                    }
+                    if (databaseValues.ImageThumbnailUrl != entityValues.ImageThumbnailUrl)
+                    {
+                        ModelState.AddModelError("Pie.ImageThumbnailUrl", $"Current value: {databaseValues.ImageThumbnailUrl}");
+                    }
+                    if (databaseValues.ImageUrl != entityValues.ImageUrl)
+                    {
+                        ModelState.AddModelError("Pie.ImageUrl", $"Current value: {databaseValues.ImageUrl}");
+                    }
+                    if (databaseValues.IsPieOfTheWeek != entityValues.IsPieOfTheWeek)
+                    {
+                        ModelState.AddModelError("Pie.IsPieOfTheWeek", $"Current value: {databaseValues.IsPieOfTheWeek}");
+                    }
+                    if (databaseValues.InStock != entityValues.InStock)
+                    {
+                        ModelState.AddModelError("Pie.InStock", $"Current value: {databaseValues.InStock}");
+                    }
+                    if (databaseValues.CategoryId != entityValues.CategoryId)
+                    {
+                        ModelState.AddModelError("Pie.CategoryId", $"Current value: {databaseValues.CategoryId}");
+                    }
+
+                    ModelState.AddModelError(string.Empty, "The pie was modified already by another user. The database values are now shown. Hit Save again to store these values.");
+                    pieToUpdate.RowVersion = databaseValues.RowVersion;
+
+                    ModelState.Remove("Pie.RowVersion");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Updating the category failed, please try again! Error: {ex.Message}");
+            }
+
+            var allCategories = await _categoryRepository.GetAllCategoriesAsync();
+
+            IEnumerable<SelectListItem> selectListItems = new SelectList(allCategories, "CategoryId", "Name", null);
+
+            PieEditViewModel pieEditViewModel = new() { Categories = selectListItems, Pie = pieToUpdate };
+
+            return View(pieEditViewModel);
+        }
+

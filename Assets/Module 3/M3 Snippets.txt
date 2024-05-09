@@ -1,0 +1,104 @@
+Module 3 Snippets
+-----------------
+
+
+<h2>Categories</h2>
+<hr />
+
+@if (!Model.Categories.Any())
+{
+    <p>No results</p>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date Added</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var category in Model.Categories)
+        {
+
+            <tr>
+                <td>@category.CategoryId</td>
+                <td>@category.Name</td>
+                <td>@category.DateAdded.Value.ToShortDateString()</td>
+
+            </tr>
+        }
+    </table>
+}
+
+
+
+
+
+if (id == null)
+            {
+                return NotFound();
+            }
+
+            var selectedCategory = await _categoryRepository.GetCategoryByIdAsync(id.Value);
+            return View(selectedCategory);
+
+
+
+
+
+@model Category
+
+<h2>Details for category @Model.Name</h2>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="CategoryId"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CategoryId
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Name"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Name
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Description"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Description
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="DateAdded"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model.DateAdded.Value.ToShortDateString()
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Pies)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                <tr>
+                    <th>Pie name</th>
+                    <th>Price</th>
+                </tr>
+                @foreach (var pie in Model.Pies)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(category => pie.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(category => pie.Price)
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>

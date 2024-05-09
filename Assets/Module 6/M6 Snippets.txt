@@ -1,0 +1,370 @@
+Module 6 Snippets
+-----------------
+
+  public async Task<int> GetAllPiesCountAsync()
+        {
+            var count = await _bethanysPieShopDbContext.Pies.CountAsync();
+            return count;
+        }
+
+        public async Task<IEnumerable<Pie>> GetPiesPagedAsync(int? pageNumber, int pageSize)
+        {
+            IQueryable<Pie> pies = from p in _bethanysPieShopDbContext.Pies
+                                   select p;
+
+            pageNumber ??= 1;
+
+            pies = pies.Skip((pageNumber.Value - 1) * pageSize).Take(pageSize);
+
+            return await pies.AsNoTracking().ToListAsync();
+        }
+
+
+
+        public class PagedList<T> : List<T>
+    {
+        public int PageIndex { get; private set; }
+        public int TotalNumberOfPages { get; private set; }
+public bool HasPreviousPage => PageIndex > 1;
+
+        public bool HasNextPage => PageIndex < TotalNumberOfPages;
+
+
+        public PagedList(List<T> items, int count, int pageIndex, int pageSize)
+        {
+            PageIndex = pageIndex;
+
+            TotalNumberOfPages = (int)Math.Ceiling(count / (double)pageSize);
+
+            AddRange(items);
+        }
+
+        
+    }
+
+
+
+        private int pageSize = 5;
+
+
+        public async Task<IActionResult> IndexPaging(int? pageNumber)
+        {
+            var pies = await _pieRepository.GetPiesPagedAsync(pageNumber, pageSize);
+pageNumber ??= 1;
+
+            var count = await _pieRepository.GetAllPiesCountAsync();
+
+            return View(new PagedList<Pie>(pies.ToList(), count, pageNumber.Value, pageSize));
+        }
+
+
+
+@using BethanysPieShopAdmin.Utilities;
+
+@model PagedList<Pie>
+
+<h2>Pies</h2>
+<hr />
+
+@if (!Model.Any())
+{
+    <tr><td colspan="3" class="text-center">No pies at this point</td></tr>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var pie in Model)
+        {
+
+            <tr>
+                <td>@pie.PieId</td>
+                <td>@pie.Name</td>
+                <td>@pie.Price</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@pie.PieId">Details</a>
+                    <a asp-action="Edit" asp-route-id="@pie.PieId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@pie.PieId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+
+}
+
+@{
+    string previousButtonDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    string nextButtonDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="IndexPaging" asp-route-pageNumber="@(Model.PageIndex - 1)" class="btn btn-default @previousButtonDisabled">
+    Previous
+</a>
+<a asp-action="IndexPaging" asp-route-pageNumber="@(Model.PageIndex + 1)" class="btn btn-default @nextButtonDisabled">
+    Next
+</a>
+
+
+<p>
+    <a class="btn btn-primary" asp-action="Add">Add new pie</a>
+</p>
+
+
+
+public async Task<IEnumerable<Pie>> GetPiesSortedAndPagedAsync(string sortBy, int? pageNumber, int pageSize)
+        {
+            IQueryable<Pie> pies = from p in _bethanysPieShopDbContext.Pies
+                                      select p;
+            switch (sortBy)
+            {
+                case "name_desc":
+                    pies = pies.OrderByDescending(p => p.Name);
+                    break;
+                case "name":
+                    pies = pies.OrderBy(p => p.Name);
+                    break;
+                case "id_desc":
+                    pies = pies.OrderByDescending(p => p.PieId);
+                    break;
+                case "id":
+                    pies = pies.OrderBy(p => p.PieId);
+                    break;
+                case "price_desc":
+                    pies = pies.OrderByDescending(p => p.Price);
+                    break;
+                case "price":
+                    pies = pies.OrderBy(p => p.Price);
+                    break;
+                default:
+                    pies = pies.OrderBy(p => p.PieId);
+                    break;
+            }
+
+            pageNumber ??= 1;
+
+            pies = pies.Skip((pageNumber.Value - 1) * pageSize).Take(pageSize);
+
+            return await pies.AsNoTracking().ToListAsync(); ;
+        }
+
+
+
+
+public async Task<IActionResult> IndexPagingSorting(string sortBy, int? pageNumber)
+        {
+            ViewData["CurrentSort"] = sortBy;
+
+            ViewData["IdSortParam"] = String.IsNullOrEmpty(sortBy) || sortBy == "id_desc" ? "id" : "id_desc";
+            ViewData["NameSortParam"] = sortBy == "name" ? "name_desc" : "name";
+            ViewData["PriceSortParam"] = sortBy == "price" ? "price_desc" : "price";
+
+            pageNumber ??= 1;
+
+            var pies = await _pieRepository.GetPiesSortedAndPagedAsync(sortBy, pageNumber, pageSize);
+
+            var count = await _pieRepository.GetAllPiesCountAsync();
+
+            return View(new PagedList<Pie>(pies.ToList(), count, pageNumber.Value, pageSize));
+        }
+
+
+
+@using BethanysPieShopAdmin.Utilities;
+
+@model PagedList<Pie>
+
+<h2>Pies</h2>
+<hr />
+
+@if (!Model.Any())
+{
+    <p>No results</p>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+            <th>
+                <a asp-action="IndexPagingSorting" asp-route-sortBy="@ViewData["IdSortParam"]">Id</a>
+            </th>
+            <th>
+                <a asp-action="IndexPagingSorting" asp-route-sortBy="@ViewData["NameSortParam"]">Name</a>
+            </th>
+            <th>
+                <a asp-action="IndexPagingSorting" asp-route-sortBy="@ViewData["PriceSortParam"]">Price</a>
+            </th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var pie in Model)
+        {
+
+            <tr>
+                <td>@pie.PieId</td>
+                <td>@pie.Name</td>
+                <td>@pie.Price</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@pie.PieId">Details</a>
+                    <a asp-action="Edit" asp-route-id="@pie.PieId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@pie.PieId">Delete</a>
+
+                </td>
+            </tr>
+        }
+    </table>
+
+
+}
+
+@{
+    string previousButtonDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    string nextButtonDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+
+<a asp-action="IndexPagingSorting"
+   asp-route-sortBy="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex - 1)"
+   class="btn btn-default @previousButtonDisabled">
+    Previous
+</a>
+<a asp-action="IndexPagingSorting"
+   asp-route-sortBy="@ViewData["CurrentSort"]"
+   asp-route-pageNumber="@(Model.PageIndex + 1)"
+   class="btn btn-default @nextButtonDisabled">
+    Next
+</a>
+
+
+<p>
+    <a class="btn btn-primary" asp-action="Add">Add new pie</a>
+</p>
+
+
+
+public async Task<IEnumerable<Pie>> SearchPies(string searchQuery, int? categoryId)
+        {
+            var pies = from p in _bethanysPieShopDbContext.Pies
+                       select p;
+
+            if (!string.IsNullOrEmpty(searchQuery))
+            {
+                pies = pies.Where(s => s.Name.Contains(searchQuery) || s.ShortDescription.Contains(searchQuery) || s.LongDescription.Contains(searchQuery));
+            }
+
+            if (categoryId != null)
+            {
+                pies = pies.Where(s => s.CategoryId == categoryId);
+            }
+
+            return await pies.ToListAsync();
+        }
+
+
+
+public class PieSearchViewModel
+    {
+        public IEnumerable<Pie>? Pies { get; set; }
+        public IEnumerable<SelectListItem>? Categories { get; set; } = default!;
+        public string? SearchQuery { get; set; }
+        public int? SearchCategory { get; set; }
+    }
+
+
+
+public async Task<IActionResult> Search(string? searchQuery, int? searchCategory)
+        {
+            var allCategories = await _categoryRepository.GetAllCategoriesAsync();
+
+            IEnumerable<SelectListItem> selectListItems = new SelectList(allCategories, "CategoryId", "Name", null);
+
+            if (searchQuery != null)
+            {
+                var pies = await _pieRepository.SearchPies(searchQuery, searchCategory);
+
+                return View(new PieSearchViewModel()
+                {
+                    Pies = pies,
+                    SearchCategory = searchCategory,
+                    Categories = selectListItems,
+                    SearchQuery = searchQuery
+                });
+            }
+            return View(new PieSearchViewModel()
+            {
+                Pies = new List<Pie>(),
+                SearchCategory = null,
+                Categories = selectListItems,
+                SearchQuery = string.Empty
+            });
+        }	
+
+
+
+@model PieSearchViewModel
+
+<h2>Search pies</h2>
+<hr />
+
+<form asp-controller="Pie" asp-action="Search" method="get">
+    <div class="mb-3">
+        <label class="form-label">Category</label>
+        <select asp-for="SearchCategory" asp-items="Model.Categories" class="form-control">
+            <option value="">All</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Search value</label>
+        <input type="text" asp-for="SearchQuery" class="form-control" />
+    </div>
+    <input type="submit" value="Filter" class="btn btn-primary" />
+</form>
+
+@if (!Model.Pies.Any())
+{
+    <p>No results</p>
+}
+else
+{
+    <table class="table table-condensed table-bordered">
+        <tr>
+
+            <th>
+                Id
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Price
+            </th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var pie in Model.Pies)
+        {
+
+            <tr>
+                <td>@pie.PieId</td>
+                <td>@pie.Name</td>
+                <td>@pie.Price</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@pie.PieId">Details</a>
+                    <a asp-action="Edit" asp-route-id="@pie.PieId">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@pie.PieId">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+}
+

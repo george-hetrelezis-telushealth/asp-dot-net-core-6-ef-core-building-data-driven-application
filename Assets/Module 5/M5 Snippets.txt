@@ -1,0 +1,392 @@
+Module 5 Snippets
+-----------------
+
+  public async Task<int> UpdateCategoryAsync(Category category)
+        {
+            bool categoryWithSameNameExist = await _bethanysPieShopDbContext.Categories.AnyAsync(c => c.Name == category.Name && c.CategoryId != category.CategoryId);
+
+            if (categoryWithSameNameExist)
+            {
+                throw new Exception("A category with the same name already exists");
+            }
+
+            var categoryToUpdate = await _bethanysPieShopDbContext.Categories.FirstOrDefaultAsync(c => c.CategoryId == category.CategoryId);
+
+            if (categoryToUpdate != null)
+            {
+
+                categoryToUpdate.Name = category.Name;
+                categoryToUpdate.Description = category.Description;
+
+                _bethanysPieShopDbContext.Categories.Update(categoryToUpdate);
+                return await _bethanysPieShopDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException($"The category to update can't be found.");
+            }
+        }
+
+
+
+
+public async Task<IActionResult> Edit(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var selectedCategory = await _categoryRepository.GetCategoryByIdAsync(id.Value);
+            return View(selectedCategory);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Category category)
+        {
+            try
+            {
+               
+                if (ModelState.IsValid)
+                {
+                    await _categoryRepository.UpdateCategoryAsync(category);
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Updating the category failed, please try again! Error: {ex.Message}");
+            }
+
+           
+
+            return View(category);
+        }
+
+
+
+@model Category
+
+<h2>Update category @Model.Name</h2>
+<hr />
+
+<form method="post" asp-controller="Category" asp-action="Edit">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="CategoryId" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label"></label>
+        <textarea asp-for="Description" class="form-control" rows="5" cols="50" style="resize: none;"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <input type="submit" value="Update category" class="btn btn-primary" />
+</form>
+<div>
+    <a asp-controller="Category" asp-action="Index">Back to overview</a>
+</div>
+
+
+
+IPieRepository
+
+Task<int> UpdatePieAsync(Pie pie);
+
+
+PieRepository
+
+      public async Task<int> UpdatePieAsync(Pie pie)
+        {
+
+            var pieToUpdate = await _bethanysPieShopDbContext.Pies.FirstOrDefaultAsync(c => c.PieId == pie.PieId);
+            if (pieToUpdate != null)
+            {
+                pieToUpdate.CategoryId = pie.CategoryId;
+                pieToUpdate.ShortDescription = pie.ShortDescription;
+                pieToUpdate.LongDescription = pie.LongDescription;
+                pieToUpdate.Price = pie.Price;
+                pieToUpdate.AllergyInformation = pie.AllergyInformation;
+                pieToUpdate.ImageThumbnailUrl = pie.ImageThumbnailUrl;
+                pieToUpdate.ImageUrl = pie.ImageUrl;
+                pieToUpdate.InStock = pie.InStock;
+                pieToUpdate.IsPieOfTheWeek = pie.IsPieOfTheWeek;
+                pieToUpdate.Name = pie.Name;
+
+                _bethanysPieShopDbContext.Pies.Update(pieToUpdate);
+                return await _bethanysPieShopDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException($"The pie to update can't be found.");
+            }
+
+        }
+		
+		
+PieEditViewModel
+
+  public class PieEditViewModel
+    {
+        public IEnumerable<SelectListItem>? Categories { get; set; } = default!;
+        public Pie Pie { get; set; } 
+    }
+
+
+
+PieController
+
+	  public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var allCategories = await _categoryRepository.GetAllCategoriesAsync();
+
+            IEnumerable<SelectListItem> selectListItems = new SelectList(allCategories, "CategoryId", "Name", null);
+
+            var selectedPie = await _pieRepository.GetPieByIdAsync(id.Value);
+
+            PieEditViewModel pieEditViewModel = new() { Categories = selectListItems, Pie = selectedPie };
+            return View(pieEditViewModel);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Pie pie)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    await _pieRepository.UpdatePieAsync(pie);
+                    return RedirectToAction(nameof(Index));
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", $"Updating the category failed, please try again! Error: {ex.Message}");
+            }
+
+            var allCategories = await _categoryRepository.GetAllCategoriesAsync();
+
+            IEnumerable<SelectListItem> selectListItems = new SelectList(allCategories, "CategoryId", "Name", null);
+
+            PieEditViewModel pieEditViewModel = new() { Categories = selectListItems, Pie = pie };
+
+            return View(pieEditViewModel);
+        }
+
+
+@model PieEditViewModel
+
+<h2>Update pie @Model.Pie.Name</h2>
+<hr />
+
+<form method="post" asp-controller="Pie" asp-action="Edit">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="Pie.PieId" />
+
+    <div class="mb-3">
+        <label asp-for="Pie.Name" class="form-label"></label>
+        <input asp-for="Pie.Name" class="form-control" />
+        <span asp-validation-for="Pie.Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Pie.ShortDescription" class="form-label"></label>
+        <textarea asp-for="Pie.ShortDescription" class="form-control" rows="5" cols="50" style="resize: none;"></textarea>
+        <span asp-validation-for="Pie.ShortDescription" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Pie.LongDescription" class="form-label"></label>
+        <textarea asp-for="Pie.LongDescription" class="form-control" rows="5" cols="50" style="resize: none;"></textarea>
+        <span asp-validation-for="Pie.LongDescription" class="text-danger"></span>
+    </div>
+
+
+    <div class="mb-3">
+        <label asp-for="Pie.AllergyInformation" class="form-label"></label>
+        <textarea asp-for="Pie.AllergyInformation" class="form-control" rows="5" cols="50" style="resize: none;"></textarea>
+        <span asp-validation-for="Pie.AllergyInformation" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Pie.Price" class="form-label"></label>
+        <input asp-for="Pie.Price" class="form-control" />
+        <span asp-validation-for="Pie.Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Pie.ImageThumbnailUrl" class="form-label"></label>
+        <input asp-for="Pie.ImageThumbnailUrl" class="form-control" />
+        <span asp-validation-for="Pie.ImageThumbnailUrl" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Pie.ImageUrl" class="form-label"></label>
+        <input asp-for="Pie.ImageUrl" class="form-control" />
+        <span asp-validation-for="Pie.ImageUrl" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Pie.IsPieOfTheWeek" class="form-label"></label>
+        <input asp-for="Pie.IsPieOfTheWeek" type="checkbox" />
+        <span asp-validation-for="Pie.IsPieOfTheWeek" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Pie.InStock" class="form-label"></label>
+        <input asp-for="Pie.InStock" type="checkbox" />
+        <span asp-validation-for="Pie.InStock" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Categories" class="form-label"></label>
+        <select asp-for="Pie.CategoryId" asp-items="Model.Categories"></select>
+        <span asp-validation-for="Categories" class="text-danger"></span>
+    </div>
+
+    <input type="submit" value="Update pie" class="btn btn-primary" />
+</form>
+
+<div>
+    <a asp-controller="Pie" asp-action="Index">Back to overview</a>
+</div>
+
+
+
+
+   public async Task<int> DeleteCategoryAsync(int id)
+        {
+            var categoryToDelete = await _bethanysPieShopDbContext.Categories.FirstOrDefaultAsync(c => c.CategoryId == id);
+
+            if (categoryToDelete != null)
+            {
+                _bethanysPieShopDbContext.Categories.Remove(categoryToDelete);
+                return await _bethanysPieShopDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException($"The category to delete can't be found.");
+            }
+        }
+
+
+
+@model Category
+
+<h2>Delete category @Model?.Name</h2>
+<hr />
+
+@if (ViewData["ErrorMessage"] != null)
+{
+    <p class="text-danger">@ViewData["ErrorMessage"]</p>
+}
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            <label asp-for="CategoryId"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model?.CategoryId
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Name"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model?.Name
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="Description"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model?.Description
+        </dd>
+        <dt class="col-sm-2">
+            <label asp-for="DateAdded"></label>
+        </dt>
+        <dd class="col-sm-10">
+            @Model?.DateAdded.Value.ToShortDateString()
+        </dd>
+
+    </dl>
+</div>
+
+<form method="post" asp-action="Delete">
+    <input type="hidden" asp-for="CategoryId" />
+    <input type="submit" value="Delete category" class="btn btn-danger" />
+</form>
+
+<div>
+    <a asp-controller="Category" asp-action="Index">Back to overview</a>
+</div>
+
+
+
+        public async Task<int> DeletePieAsync(int id)
+        {
+            var pieToDelete = await _bethanysPieShopDbContext.Pies.FirstOrDefaultAsync(c => c.PieId == id);
+
+            if (pieToDelete != null)
+            {
+                _bethanysPieShopDbContext.Pies.Remove(pieToDelete);
+                return await _bethanysPieShopDbContext.SaveChangesAsync();
+            }
+            else
+            {
+                throw new ArgumentException($"The pie to delete can't be found.");
+            }
+        }
+	
+
+
+public async Task<IActionResult> Delete(int id)
+        {
+            var selectedCategory = await _pieRepository.GetPieByIdAsync(id);
+
+            return View(selectedCategory);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteConfirmed(int? pieId)
+        {
+            if (pieId == null)
+            {
+                ViewData["ErrorMessage"] = "Deleting the pie failed, invalid ID!";
+                return View();
+            }
+
+            try
+            {
+                await _pieRepository.DeletePieAsync(pieId.Value);
+                TempData["PieDeleted"] = "Pie deleted successfully!";
+
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception ex)
+            {
+                ViewData["ErrorMessage"] = $"Deleting the pie failed, please try again! Error: {ex.Message}";
+            }
+
+            var selectedPie = await _pieRepository.GetPieByIdAsync(pieId.Value);
+            return View(selectedPie);
+        }
+
