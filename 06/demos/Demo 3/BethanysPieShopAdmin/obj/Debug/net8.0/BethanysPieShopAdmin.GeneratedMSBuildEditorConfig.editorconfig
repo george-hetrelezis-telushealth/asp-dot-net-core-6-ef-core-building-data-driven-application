@@ -9,95 +9,95 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BethanysPieShopAdmin
 build_property.RootNamespace = BethanysPieShopAdmin
-build_property.ProjectDir = C:\Users\george.hetrelezis\Downloads\asp-dot-net-core-6-ef-core-building-data-driven-application\06\demos\Demo 3\BethanysPieShopAdmin\
+build_property.ProjectDir = C:\Users\george.hetrelezis\source\repos\asp-dot-net-core-6-ef-core-building-data-driven-application\06\demos\Demo 3\BethanysPieShopAdmin\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\george.hetrelezis\Downloads\asp-dot-net-core-6-ef-core-building-data-driven-application\06\demos\Demo 3\BethanysPieShopAdmin
+build_property.MSBuildProjectDirectory = C:\Users\george.hetrelezis\source\repos\asp-dot-net-core-6-ef-core-building-data-driven-application\06\demos\Demo 3\BethanysPieShopAdmin
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Add.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Delete.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Details.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Edit.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Index.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Home/Index.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Order/Details.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Order/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Order/Index.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Order/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3JkZXJcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Add.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Add.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGllXEFkZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Delete.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGllXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Details.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGllXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Edit.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGllXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Index.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGllXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/IndexPaging.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/IndexPaging.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGllXEluZGV4UGFnaW5nLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/IndexPagingSorting.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/IndexPagingSorting.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGllXEluZGV4UGFnaW5nU29ydGluZy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Search.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Pie/Search.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUGllXFNlYXJjaC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Shared/Error.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Shared/_ValidationScriptsPartial.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/_ViewImports.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/_ViewStart.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/george.hetrelezis/Downloads/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Shared/_Layout.cshtml]
+[C:/Users/george.hetrelezis/source/repos/asp-dot-net-core-6-ef-core-building-data-driven-application/06/demos/Demo 3/BethanysPieShopAdmin/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-p1fx6oeasa
