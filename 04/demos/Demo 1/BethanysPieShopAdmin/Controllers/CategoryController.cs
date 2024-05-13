@@ -1,4 +1,5 @@
-﻿using BethanysPieShopAdmin.Models.Repositories;
+﻿using BethanysPieShopAdmin.Models;
+using BethanysPieShopAdmin.Models.Repositories;
 using BethanysPieShopAdmin.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,6 +34,18 @@ namespace BethanysPieShopAdmin.Controllers
 
             var selectedCategory = await _categoryRepository.GetCategoryByIdAsync(id.Value);
             return View(selectedCategory);
+        }
+
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Add([Bind("Name,Description,DateAdded")] Category category)
+        {
+            await _categoryRepository.AddCategoryAsync(category);
+                 return RedirectToAction("Index");
         }
     }
 }

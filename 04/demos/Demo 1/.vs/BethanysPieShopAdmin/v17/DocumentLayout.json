@@ -1,0 +1,147 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|c:\\users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\demo 1\\bethanyspieshopadmin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|solutionrelative:bethanyspieshopadmin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|c:\\users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\demo 1\\bethanyspieshopadmin\\models\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|solutionrelative:bethanyspieshopadmin\\models\\repositories\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|c:\\users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\demo 1\\bethanyspieshopadmin\\models\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|solutionrelative:bethanyspieshopadmin\\models\\repositories\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|c:\\users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\demo 1\\bethanyspieshopadmin\\viewmodels\\pieaddviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|solutionrelative:bethanyspieshopadmin\\viewmodels\\pieaddviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|c:\\users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\demo 1\\bethanyspieshopadmin\\models\\pie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|solutionrelative:bethanyspieshopadmin\\models\\pie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|c:\\users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\demo 1\\bethanyspieshopadmin\\models\\repositories\\pierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|solutionrelative:bethanyspieshopadmin\\models\\repositories\\pierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|c:\\users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\demo 1\\bethanyspieshopadmin\\models\\repositories\\ipierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D105E43-3A77-4345-8D25-9A86E9B73909}|BethanysPieShopAdmin\\BethanysPieShopAdmin.csproj|solutionrelative:bethanyspieshopadmin\\models\\repositories\\ipierepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "BethanysPieShopAdmin\\Controllers\\CategoryController.cs",
+              "ToolTip": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "BethanysPieShopAdmin\\Controllers\\CategoryController.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAowCwAAABYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T12:51:18.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Repositories\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "BethanysPieShopAdmin\\Models\\Repositories\\CategoryRepository.cs",
+              "ToolTip": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Repositories\\CategoryRepository.cs",
+              "RelativeToolTip": "BethanysPieShopAdmin\\Models\\Repositories\\CategoryRepository.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAYwCMAAABUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T12:49:09.851Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ICategoryRepository.cs",
+              "DocumentMoniker": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Repositories\\ICategoryRepository.cs",
+              "RelativeDocumentMoniker": "BethanysPieShopAdmin\\Models\\Repositories\\ICategoryRepository.cs",
+              "ToolTip": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Repositories\\ICategoryRepository.cs",
+              "RelativeToolTip": "BethanysPieShopAdmin\\Models\\Repositories\\ICategoryRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T12:47:55.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "PieAddViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\ViewModels\\PieAddViewModel.cs",
+              "RelativeDocumentMoniker": "BethanysPieShopAdmin\\ViewModels\\PieAddViewModel.cs",
+              "ToolTip": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\ViewModels\\PieAddViewModel.cs",
+              "RelativeToolTip": "BethanysPieShopAdmin\\ViewModels\\PieAddViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T12:47:25.999Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Pie.cs",
+              "DocumentMoniker": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Pie.cs",
+              "RelativeDocumentMoniker": "BethanysPieShopAdmin\\Models\\Pie.cs",
+              "ToolTip": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Pie.cs",
+              "RelativeToolTip": "BethanysPieShopAdmin\\Models\\Pie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T12:46:47.161Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PieRepository.cs",
+              "DocumentMoniker": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Repositories\\PieRepository.cs",
+              "RelativeDocumentMoniker": "BethanysPieShopAdmin\\Models\\Repositories\\PieRepository.cs",
+              "ToolTip": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Repositories\\PieRepository.cs",
+              "RelativeToolTip": "BethanysPieShopAdmin\\Models\\Repositories\\PieRepository.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T12:44:50.225Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IPieRepository.cs",
+              "DocumentMoniker": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Repositories\\IPieRepository.cs",
+              "RelativeDocumentMoniker": "BethanysPieShopAdmin\\Models\\Repositories\\IPieRepository.cs",
+              "ToolTip": "C:\\Users\\george.hetrelezis\\source\\repos\\asp-dot-net-core-6-ef-core-building-data-driven-application\\04\\demos\\Demo 1\\BethanysPieShopAdmin\\Models\\Repositories\\IPieRepository.cs",
+              "RelativeToolTip": "BethanysPieShopAdmin\\Models\\Repositories\\IPieRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-13T12:44:41.57Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
