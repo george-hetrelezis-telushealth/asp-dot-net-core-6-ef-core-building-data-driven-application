@@ -45,7 +45,7 @@ namespace BethanysPieShopAdmin.Controllers
         public async Task<IActionResult> Add([Bind("Name,Description,DateAdded")] Category category)
         {
             await _categoryRepository.AddCategoryAsync(category);
-                 return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
     }
 }
