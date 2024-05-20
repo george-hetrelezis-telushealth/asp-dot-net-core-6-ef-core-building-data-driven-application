@@ -6,7 +6,7 @@
 <form method="post" asp-controller="Pie" asp-action="Edit">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <input type="hidden" asp-for="Pie.PieId" />
-
+    <input type="hidden" asp-for="Pie.RowVersion" />
     <div class="mb-3">
         <label asp-for="Pie.Name" class="form-label"></label>
         <input asp-for="Pie.Name" class="form-control" />

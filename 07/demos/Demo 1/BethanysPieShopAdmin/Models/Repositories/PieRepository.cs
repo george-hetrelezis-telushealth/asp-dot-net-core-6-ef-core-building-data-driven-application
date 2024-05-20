@@ -89,9 +89,11 @@ namespace BethanysPieShopAdmin.Models.Repositories
         public async Task<int> UpdatePieAsync(Pie pie)
         {
 
-            var pieToUpdate = await _bethanysPieShopDbContext.Pies.FirstOrDefaultAsync(c => c.PieId == pie.PieId);
+            var pieToUpdate = await _bethanysPieShopDbContext.Pies.FirstOrDefaultAsync(c 
+                => c.PieId == pie.PieId);
             if (pieToUpdate != null)
             {
+                _bethanysPieShopDbContext.Entry(pieToUpdate).Property("RowVersion").OriginalValue = pie.RowVersion;
                 pieToUpdate.CategoryId = pie.CategoryId;
                 pieToUpdate.ShortDescription = pie.ShortDescription;
                 pieToUpdate.LongDescription = pie.LongDescription;

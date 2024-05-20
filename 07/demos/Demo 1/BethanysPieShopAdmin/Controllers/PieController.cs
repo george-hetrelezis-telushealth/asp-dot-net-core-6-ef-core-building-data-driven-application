@@ -4,6 +4,7 @@ using BethanysPieShopAdmin.Utilities;
 using BethanysPieShopAdmin.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace BethanysPieShopAdmin.Controllers
 {
@@ -117,6 +118,8 @@ namespace BethanysPieShopAdmin.Controllers
             return View(pieAddViewModel);
         }
 
+
+
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -134,6 +137,64 @@ namespace BethanysPieShopAdmin.Controllers
             return View(pieEditViewModel);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Edit(Pie pie)
+        {
+            Pie pieToUpdate = await _pieRepository.GetPieByIdAsync(pie.PieId);
+
+            try
+            {
+                if(pieToUpdate == null)
+                {
+                    ModelState.AddModelError(string.Empty, "The pie you want to update " +
+                        "doesn't exist or was already deleted by someone else.");
+                }
+
+                if(ModelState.IsValid)
+                {
+                    await _pieRepository.UpdatePieAsync(pie);
+                    return RedirectToAction(nameof(Index));
+                }
+            }
+            catch(DbUpdateConcurrencyException ex)
+            {
+                var exceptionPie = ex.Entries.Single();
+                var entityValues = (Pie)exceptionPie.Entity;
+                var databasePie = exceptionPie.GetDatabaseValues();
+                if(databasePie == null)
+                {
+                    ModelState.AddModelError(string.Empty, "The pie " +
+                                               "was already deleted by someone else.");
+                }
+                else
+                {
+                    var databaseValues = (Pie)databasePie.ToObject();
+
+                    if (databaseValues.Name != entityValues.Name)
+                    {
+                        ModelState.AddModelError("Pie.Name", $"Current value: {databaseValues.Name}");
+                    }
+                    if (databaseValues.Price != entityValues.Price)
+                    {
+                        ModelState.AddModelError("Pie.Price", $"Current value: {databaseValues.Price:c}");
+                    }
+                    if (databaseValues.CategoryId != entityValues.CategoryId)
+                    {
+                        ModelState.AddModelError("Pie.CategoryId", $"Current value: {databaseValues.CategoryId:c}");
+                    }
+                    
+                    ModelState.AddModelError(string.Empty, "The pie was modified by another user." +
+                                    "The database values are now shown. Hit save again to store these " +
+                                    "values.")
+
+                    ModelState.Remove("Pie.RowVersion");
+                }
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError(string.Empty, $"Updating the pie failed, please try again! Error: {ex.Message}");
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> Edit(PieEditViewModel pieEditViewModel)
