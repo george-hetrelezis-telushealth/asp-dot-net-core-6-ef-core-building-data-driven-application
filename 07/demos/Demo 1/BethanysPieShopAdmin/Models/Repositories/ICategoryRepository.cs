@@ -9,5 +9,7 @@
         Task<int> UpdateCategoryAsync(Category category);
         Task<int> DeleteCategoryAsync(int id);
 
+        Task<int> UpdateCategoryAsync(List<Category> categories);
+
     }
 }

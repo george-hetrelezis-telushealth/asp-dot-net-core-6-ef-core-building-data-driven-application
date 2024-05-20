@@ -96,5 +96,32 @@ namespace BethanysPieShopAdmin.Models.Repositories
                 throw new ArgumentException($"The category to delete can't be found.");
             }
         }
+
+        public async Task<int> UpdateCategoryNamesAsync(List<Category> categories)
+        {
+            foreach(var category in categories) 
+            { 
+                var categoryToUpdate = await
+                    _bethanysPieShopDbContext.Categories.FirstOrDefaultAsync(c => 
+                    c.CategoryId == category.CategoryId);
+                if (categoryToUpdate != null) 
+                {
+                    categoryToUpdate.Name = category.Name;
+
+                    _bethanysPieShopDbContext.Categories.Update(categoryToUpdate);
+                }
+            }
+
+            int result = await _bethanysPieShopDbContext.SaveChangesAsync();
+
+            _memoryCache.Remove(AllCategoriesCacheName);
+
+            return result;
+        }
+
+        public Task<int> UpdateCategoryAsync(List<Category> categories)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
