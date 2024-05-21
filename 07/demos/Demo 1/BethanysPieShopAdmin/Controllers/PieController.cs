@@ -182,10 +182,10 @@ namespace BethanysPieShopAdmin.Controllers
                     {
                         ModelState.AddModelError("Pie.CategoryId", $"Current value: {databaseValues.CategoryId:c}");
                     }
-                    
+
                     ModelState.AddModelError(string.Empty, "The pie was modified by another user." +
                                     "The database values are now shown. Hit save again to store these " +
-                                    "values.")
+                                    "values.");
 
                     ModelState.Remove("Pie.RowVersion");
                 }
